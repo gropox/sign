@@ -1,0 +1,45 @@
+http://localhost:3000/?tr=[
+    [
+        "witness_update",
+        {
+            "owner":"ropox",
+            "url":"https://golos.io/@ropox",
+            "block_signing_key":"GLS5X8q8sKtitBHSFMPzVe3Eh72UK7JVDxS37TtXjcPdXoEsqh1xQ",
+            "props":{
+                "account_creation_fee":"3.000 GOLOS",
+                "maximum_block_size":65536,
+                "sbd_interest_rate":0
+        },
+        "fee":"1.000 GOLOS"}
+    ]
+]
+
+http://localhost:3001/?tr=[["comment_options",{"author":"ropox","permlink":"ropox-bolshe-ne-delegat","max_accepted_payout":"1000000.000 GBG","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[]}],[2,{"comment_curation_rewards_percent":[{"percent":2500}]}]]}]]
+http://localhost:3001/?tr=[["comment_options",{"author":"ropox","permlink":"ropox-bolshe-ne-delegat","max_accepted_payout":"1000000.000 GBG","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[2,{"percent":2500}]]}]]
+http://localhost:3001/?tr=[["comment_options",{"author":"ropox","permlink":"ropox-bolshe-ne-delegat","max_accepted_payout":"1000000.000 GBG","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[]}]]}]]
+http://localhost:3001/?tr=[["comment_options",{"author":"ropox","permlink":"ropox-bolshe-ne-delegat","max_accepted_payout":"1000000.000 GBG","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[]}]]
+http://localhost:3001/?tr=[
+    [
+        "comment_options",
+        {
+          "author": "ropox",
+          "permlink": "ropox-bolshe-ne-delegat",
+          "max_accepted_payout": "1000000.000 GBG",
+          "percent_steem_dollars": 10000,
+          "allow_votes": true,
+          "allow_curation_rewards": true,
+          "extensions": [
+            [
+              0,
+              {
+                "comment_curation_rewards_percent": [
+                  {
+                    "percent": 2500
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+    ]
+]
