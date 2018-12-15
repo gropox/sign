@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Transaction } from "../service/operation";
 import signandsend, {SIGN_TYPE, checkAccount} from "../service/sign";
 import SignErrorsView from './SignErrorsView';
+import MediaQuery from 'react-responsive';
 
 import {FormSelector} from "./SignFormComponents";
 
@@ -80,16 +81,24 @@ export class SignForm extends Component {
         const TabButton = (props) => {
             const { sign_type } = props;
             const active = this.state.sign_type === sign_type ? " active " : "";
-            return (<li className="nav-item"><button className={"btn nav-link " + active} onClick={() => this.setState({ sign_type })}>{props.label}</button></li>)
+            return (<li className="nav-item"><button className={"btn btn-block nav-link " + active} onClick={() => this.setState({ sign_type })}>{props.label}</button></li>)
         }
 
         return (
             <div className="border p-2 m-2">
                 <div className=" mb-3">
+                <MediaQuery minWidth={425}>
                     <ul className="nav nav-tabs">
                         <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
                         <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
                     </ul>
+                </MediaQuery>
+                <MediaQuery maxWidth={420}>
+                    <ul className="nav nav-pills nav-justified">
+                        <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
+                        <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
+                    </ul>
+                </MediaQuery>
                 </div>
                 
                 {(this.state.error || this.state.result) && <SignErrorsView error={this.state.error} result={this.state.result} />}

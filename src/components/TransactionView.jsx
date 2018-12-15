@@ -21,36 +21,28 @@ export class TransactionView extends Component {
         return (
             <div className="container">
                 <div className="row ">
-                    <div className="col-md-12">
+                    <div className="col-sm-12">
                         <SignForm transaction={this.props.transaction} />
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-sm-12">
                     <div className=" border m-2 p-2">
                         <div className="alert alert-info" role="alert">
                             <h4>Содержимое</h4>
                         </div>
 
 
-                        <table className="table table-sm text-left">
-                            <thead>
-                                <tr>
-                                    <th>Операция</th>
-                                    <th>Дополнительная информация</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div className="container">
                                 {this.props.transaction.ops.map((op, i) => (
-                                    <tr key={i}>
-                                        <td>{getOpName(op)}</td>
-                                        <td>{getOpDetails(op)}</td>
-                                    </tr>
-                                ))}
-
-                            </tbody>
-                        </table>
+                                <div className="row" key={i}>
+                                    <div className="col-sm-3"><div className="font-weight-bold">Операция</div>{getOpName(op)}<div><small>{op.name}</small></div></div>
+                                    <div className="col-sm-9"><div className="font-weight-bold">Детальная информация</div>{getOpDetails(op)}</div>
+                                </div>
+                                ))
+                                }
+                        </div>
                     </div>
                     </div>
                 </div>

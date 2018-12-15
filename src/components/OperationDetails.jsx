@@ -1,72 +1,13 @@
 import React from 'react'
 
-
-const WitnessUpdate = (props) => {
-    const op = props.op;
-    return (<div className="form-group input-group-sm">
-    <table>
-        <tbody>
-            <tr><th>Делегат</th><td>{op.body.owner}</td></tr>
-            <tr><th>URL</th><td>{op.body.url}</td></tr>
-            <tr><th>Подписной ключ</th><td>{op.body.block_signing_key}</td></tr>
-            <tr><th>Параметры</th>
-                <td><table>
-                    <tbody>
-                        {Object.keys(op.body.props).map((k) => (
-                            <tr key={k}>
-                                <td>{k}</td>
-                                <td>{op.body.props[k]}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>);
-}
-
-const ChainPropertiesUpdate = (props) => {
-    const op = props.op;
-    return (<div className="form-group input-group-sm">
-    <table>
-        <tbody>
-            <tr><th>Делегат</th><td>{op.body.owner}</td></tr>
-            <tr><th>Параметры</th>
-                <td><table>
-                    <tbody>
-                        {Object.keys(op.body.props).map((k) => (
-                            <tr key={k}>
-                                <td>{k}</td>
-                                <td>{op.body.props[k]}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>);
-}
-
-
 export function getOpDetails(op) {
     switch(op.name) {
         case "transfer":
             return <div><strong>От</strong> {op.body.from}, <strong>Кому</strong> {op.body.from}, <strong>Сумма</strong> {op.body.amount}</div>;
-        case "vote":
-            return <div><strong>От</strong> {op.body.voter}, <strong>Автор</strong> {op.body.author}, <strong>Пермлинк</strong> {op.body.permlink}</div>;
-        case "witness_update":
-            return <WitnessUpdate op={op} />;
-        case "chain_properties_update":
-            return <ChainPropertiesUpdate op={op} />;
         default:
             return <pre>{JSON.stringify(op.body, null, 2)}</pre>;
     }
 }
-
 
 const OP_TRANSLATIONS = {
     vote: "Апвоут", 
