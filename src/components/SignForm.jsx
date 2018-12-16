@@ -17,7 +17,7 @@ export class SignForm extends Component {
         super(props);
         this.state = {
             wif: "",
-            account: "",
+            account: props.user || "",
             error: null,
             result: null,
             sign_type: SIGN_TYPE.PASSWORD,
@@ -73,9 +73,7 @@ export class SignForm extends Component {
     }
 
     render() {
-
-        const { transaction } = this.props;
-
+        const {nowif} = this.props;
         let form_class = "needs-validation";
 
         const TabButton = (props) => {
@@ -86,7 +84,8 @@ export class SignForm extends Component {
 
         return (
             <div className="border p-2 m-2">
-                <div className=" mb-3">
+                {!nowif && <div className=" mb-3">
+                
                 <MediaQuery minWidth={425}>
                     <ul className="nav nav-tabs">
                         <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
@@ -99,7 +98,8 @@ export class SignForm extends Component {
                         <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
                     </ul>
                 </MediaQuery>
-                </div>
+                
+                </div>}
                 
                 {(this.state.error || this.state.result) && <SignErrorsView error={this.state.error} result={this.state.result} />}
                 {this.state.sending && <div className={"mt-5 mb-5 alert alert-warning"} role="alert">
@@ -108,7 +108,6 @@ export class SignForm extends Component {
                 }
 
                 <FormSelector 
-                    transaction={transaction}
                     onChange={(key,value) => this.onChange(key, value)}
                     onSign={() => this.onSign()}
                     form_class={form_class}

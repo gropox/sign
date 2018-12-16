@@ -16,7 +16,7 @@ function translate_role(role) {
 export const WifInput = (props) => {
     const wif_class = (props.wif_error?" is-invalid":"");
     return (
-        <input id="wif"
+        <input id={props.id} name={props.id}
             value={props.wif}
             onChange={(ev) => props.onChange("wif", ev.target.value)}
             type="password"
@@ -52,7 +52,7 @@ export const FormWif = (props) => {
             <div className="form-group input-group-sm">
                 <label htmlFor="wif">Приватный ключ</label>
 
-                <WifInput {...props} />
+                <WifInput id="wif" {...props} />
 
                 <small id="wif-help" className="form-text text-muted">Для подписи транзакции требуется как минимум <strong>{translate_role(transaction.required_wif)}</strong></small>
                 <div className="invalid-feedback">{wif_error}</div>
@@ -86,7 +86,7 @@ export const FormAccountAndPasswort = (props) => {
             <div className="form-group input-group-sm">
                 <label htmlFor="wif">Пароль</label>
 
-                <WifInput {...props} />
+                <WifInput id="password" {...props} />
 
                 <small id="account-help" className="form-text text-muted">Пароль</small>
                 <div className="invalid-feedback">{wif_error}</div>

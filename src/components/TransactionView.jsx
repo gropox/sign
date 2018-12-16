@@ -22,7 +22,7 @@ export class TransactionView extends Component {
             <div className="container">
                 <div className="row ">
                     <div className="col-sm-12">
-                        <SignForm transaction={this.props.transaction} />
+                        <SignForm {...this.props} />
                     </div>
                 </div>
 

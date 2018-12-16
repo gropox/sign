@@ -3,7 +3,10 @@ import React from 'react'
 export function getOpDetails(op) {
     switch(op.name) {
         case "transfer":
-            return <div><strong>От</strong> {op.body.from}, <strong>Кому</strong> {op.body.to}, <strong>Сумма</strong> {op.body.amount}</div>;
+            return <div className="md-2 border-bottom">
+                <strong>От</strong> {op.body.from}, <strong>Кому</strong> {op.body.to}, <strong>Сумма</strong> {op.body.amount}
+                <br /><strong>Заметка</strong> {(""+op.body.memo || "").substring(0, 50)}
+            </div>;
         default:
             return <pre>{JSON.stringify(op.body, null, 2)}</pre>;
     }
