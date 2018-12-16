@@ -90,7 +90,7 @@ export class SignForm extends Component {
                 <MediaQuery minWidth={425}>
                     <ul className="nav nav-tabs">
                         <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
-                        <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
+                        <TabButton label="Подпись ключом" sign_type={SIGN_TYPE.WIF} />
                     </ul>
                 </MediaQuery>
                 <MediaQuery maxWidth={420}>
