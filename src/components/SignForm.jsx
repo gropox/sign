@@ -112,6 +112,7 @@ export class SignForm extends Component {
                     onSign={() => this.onSign()}
                     form_class={form_class}
                     {...this.state}
+                    {...this.props}
                 />
             </div>
         )

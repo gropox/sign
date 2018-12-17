@@ -40,7 +40,7 @@ export const TabButton = (props) => {
 export const SignButton = (props) => {
     return (
         <div className="form-group input-group-sm">
-            <button type="button" id="sign-botton" className="btn btn-primary" onClick={props.onSign}>Подписать транзакцию</button>
+            <button type="button" id="sign-botton" className="btn btn-primary" onClick={props.onSign}>Отправить</button>
         </div>
     )
 }
@@ -76,11 +76,9 @@ export const FormAccountAndPasswort = (props) => {
                     onChange={(ev) => onChange("account", ev.target.value)}
                     type="text"
                     className={"form-control" + account_class}
-                    aria-describedby="account-help"
                     placeholder="Аккаунт в блокчейне golos"
                     required />
 
-                <small id="account-help" className="form-text text-muted">Аккаунт в блокчейне golos</small>
                 <div className="invalid-feedback">{account_error}</div>
             </div>
             <div className="form-group input-group-sm">
@@ -88,7 +86,6 @@ export const FormAccountAndPasswort = (props) => {
 
                 <WifInput id="password" {...props} />
 
-                <small id="account-help" className="form-text text-muted">Пароль</small>
                 <div className="invalid-feedback">{wif_error}</div>
             </div>
 

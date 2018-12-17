@@ -30,13 +30,14 @@ class App extends Component {
     componentDidMount() {
         const params = queryString.parse(window.location.search);
         const title = (params["title"] || "Писарь");
+        const subtitle = (params["subtitle"]);
         const nowif = Object.keys(params).includes("nowif");
         const user = params["user"];
 
         let tr = params["tr"];
         if (!tr) {
             console.log("Не найден URL параметр tr");
-            this.setState({ title, error: "Вызов без параметров" });
+            this.setState({ title, subtitle, error: "Вызов без параметров" });
             return;
         }
 
@@ -47,12 +48,12 @@ class App extends Component {
                 json = JSON.parse(tr);
             } catch (error) {
                 console.log("not valid json", tr);
-                this.setState({ title, error: "Переданная транзакция не является валидным JSON" });
+                this.setState({ title, subtitle, error: "Переданная транзакция не является валидным JSON" });
                 return;
             }
             //Проверка транзакции на валидность
             const transaction = new Transaction(json);
-            this.setState({ transaction, title, user, nowif });
+            this.setState({ transaction, title, subtitle, user, nowif });
         } catch (errors) {
             //обнаружены ошибки
             console.log("found errors", errors)
@@ -76,8 +77,9 @@ class App extends Component {
                 {<div className="row">
                     <div className="col-sm-12">
                         <nav className="navbar navbar-light " >
-                            <div className="navbar-brand">
-                                <a className="navbar-brand" href="/"><h3>{this.state.title}</h3></a>
+                            <div>
+                                <h3>{this.state.title}</h3>
+                                {this.state.subtitle && <h5>{this.state.subtitle}</h5>}
                                 <br /><small>Подпись транзакции GOLOS
                                 <a rel="noopener noreferrer" target="_blank" href="http://golos.io/@ropox/sign">&nbsp;<span className="rounded-circle bg-info text-white font-weight-bold">&nbsp;?&nbsp;</span></a></small>
                             </div>
