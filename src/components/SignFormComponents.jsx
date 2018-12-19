@@ -72,6 +72,7 @@ export const FormAccountAndPasswort = (props) => {
 
                 <input
                     id="account"
+                    name="account"
                     value={account}
                     onChange={(ev) => onChange("account", ev.target.value)}
                     type="text"

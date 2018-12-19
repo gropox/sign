@@ -6,6 +6,7 @@ import SignErrorsView from './SignErrorsView';
 import MediaQuery from 'react-responsive';
 
 import {FormSelector} from "./SignFormComponents";
+import {FaKey, FaUser} from "react-icons/fa";
 
 export class SignForm extends Component {
 
@@ -83,6 +84,7 @@ export class SignForm extends Component {
     }
 
     onChange(key, value) {
+        console.log("onChange", key, value)
         this.setState({[key]:value, wif_error:null, account_error:null});
     }
 
@@ -93,11 +95,23 @@ export class SignForm extends Component {
         const TabButton = (props) => {
             const { sign_type } = props;
             const active = this.state.sign_type === sign_type ? " active " : "";
-            return (<li className="nav-item"><button className={"btn btn-block nav-link " + active} onClick={() => this.setState({ sign_type })}>{props.label}</button></li>)
+            return (<li className="nav-item"><button  type="button" className={"btn btn-block nav-link " + active} onClick={() => this.setState({ sign_type })}>{props.label}</button></li>)
+        }
+
+        const BottomToggler = (props) => {
+            if(nowif) {
+                const is_pass = this.state.sign_type === SIGN_TYPE.PASSWORD;
+                const icon = is_pass?<FaKey />:<FaUser />;
+                const sign_type =  is_pass?SIGN_TYPE.WIF:SIGN_TYPE.PASSWORD;
+                const title = is_pass?"Подпись ключем":"Подпись паролем";
+                return <button type="button" title={title} 
+                    className="btn-outline-primary float-right btn btn-sm btn-primary" 
+                    onClick={() => this.setState({ sign_type })}>{icon}</button>;
+            }
         }
 
         return (
-            <div className="border p-2 m-2">
+            <div className="clearfix border p-2 m-2">
                 {!nowif && <div className=" mb-3">
                 
                 <MediaQuery minWidth={425}>
@@ -128,6 +142,7 @@ export class SignForm extends Component {
                     {...this.state}
                     {...this.props}
                 />
+                <BottomToggler />
             </div>
         )
     }
