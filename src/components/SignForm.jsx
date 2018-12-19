@@ -103,7 +103,7 @@ export class SignForm extends Component {
                 const is_pass = this.state.sign_type === SIGN_TYPE.PASSWORD;
                 const icon = is_pass?<FaKey />:<FaUser />;
                 const sign_type =  is_pass?SIGN_TYPE.WIF:SIGN_TYPE.PASSWORD;
-                const title = is_pass?"Подпись ключем":"Подпись паролем";
+                const title = is_pass?"Подпись ключом":"Подпись паролем";
                 return <button type="button" title={title} 
                     className="btn-outline-primary float-right btn btn-sm btn-primary" 
                     onClick={() => this.setState({ sign_type })}>{icon}</button>;
