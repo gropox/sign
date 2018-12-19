@@ -8,6 +8,8 @@ import "bootstrap/dist/css/bootstrap.css"
 import { Transaction } from "../service/operation";
 import ErrorsView from "./ErrorsView";
 
+import sanatizer from "@braintree/sanitize-url";
+
 const ErrorMessage = (props) => {
     return (
         <div className="mt-5 mb-5 alert alert-danger" role="alert">
@@ -33,6 +35,11 @@ class App extends Component {
         const subtitle = (params["subtitle"]);
         const nowif = Object.keys(params).includes("nowif");
         const user = params["user"];
+        let redirect = sanatizer.sanitizeUrl(params["redirect"] || "");
+
+        if(redirect === "about:blank") {
+            redirect = null;
+        }
 
         let tr = params["tr"];
         if (!tr) {
@@ -53,7 +60,7 @@ class App extends Component {
             }
             //Проверка транзакции на валидность
             const transaction = new Transaction(json);
-            this.setState({ transaction, title, subtitle, user, nowif });
+            this.setState({ transaction, title, subtitle, user, nowif, redirect });
         } catch (errors) {
             //обнаружены ошибки
             console.log("found errors", errors)
@@ -65,7 +72,7 @@ class App extends Component {
 
         let content = null;
         if (this.state.transaction) {
-            content = <TransactionView nowif={this.state.nowif} user={this.state.user} transaction={this.state.transaction} />
+            content = <TransactionView redirect={this.state.redirect} nowif={this.state.nowif} user={this.state.user} transaction={this.state.transaction} />
         } else if (this.state.error) {
             content = <ErrorMessage error={this.state.error} />
         } else if (this.state.errors) {

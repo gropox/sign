@@ -22,7 +22,8 @@ export class SignForm extends Component {
             result: null,
             sign_type: SIGN_TYPE.PASSWORD,
             account_error : null,
-            sending: false
+            sending: false,
+            redirect: null,
         }
     }
 
@@ -31,9 +32,22 @@ export class SignForm extends Component {
      */
     send() {
         signandsend(this.props.transaction, this.state.sign_type, this.state.account, this.state.wif)
-            .then(result => this.setState({ result, error: null, account_error: null, sending: false }))
+            .then(result => this.onSuccess(result))
             .catch(error => this.setState({ result: null, error, account_error: null, sending: false }));
         this.setState({sending:true, error: null, result: null});
+    }
+
+    onSuccess(result) {
+        this.setState({ result, error: null, account_error: null, sending: false })
+        this.redirect();
+    }
+
+    redirect() {
+        if(!this.props.redirect) {
+            return;
+        }
+
+        setTimeout(() => {window.location = this.props.redirect}, 5 * 1000);
     }
 
     onSign() {
@@ -73,7 +87,7 @@ export class SignForm extends Component {
     }
 
     render() {
-        const {nowif} = this.props;
+        const {nowif, redirect} = this.props;
         let form_class = "needs-validation";
 
         const TabButton = (props) => {
@@ -101,7 +115,7 @@ export class SignForm extends Component {
                 
                 </div>}
                 
-                {(this.state.error || this.state.result) && <SignErrorsView error={this.state.error} result={this.state.result} />}
+                {(this.state.error || this.state.result) && <SignErrorsView error={this.state.error} result={this.state.result} redirect={redirect} />}
                 {this.state.sending && <div className={"mt-5 mb-5 alert alert-warning"} role="alert">
                     <h4>Отправка...</h4>
                     </div>
