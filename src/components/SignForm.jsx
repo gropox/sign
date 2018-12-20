@@ -108,6 +108,7 @@ export class SignForm extends Component {
                     className="btn-outline-primary float-right btn btn-sm btn-primary" 
                     onClick={() => this.setState({ sign_type })}>{icon}</button>;
             }
+            return null;
         }
 
         return (
