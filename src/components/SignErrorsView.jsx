@@ -53,7 +53,7 @@ export class SignErrorsView extends Component {
     extractUsefulInfos() {
         console.log("ret", this.props.result);
         return <div>
-            <h4>Отправленно!</h4>
+            <h4>Отправлено!</h4>
                 <p className="mb-0">Номер блока: {this.props.result.block_num}</p>
                 <p className="mb-0">ID транзакции: {this.props.result.id}</p>
                 {this.props.redirect && <p className="mt-2">Вы будете автоматически перенаправлены на адрес <strong>{this.props.redirect}</strong>...</p>
