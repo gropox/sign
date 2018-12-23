@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 
 const ERROR_DESC = {
     "Expected version": "Вероятно введенный ключ не является приватным ключем, неверный формат, пропущенный знак",
-    "3020100": "Введенный ключ либо не достаточного уровня либо отсутствует в ауторити пользователя",
+    "3020100": "Введенный ключ либо недостаточного уровня либо отсутствует в ауторити пользователя, неверный пароль",
     "2020000": "Недостаточно средств на счету пользователя",
     "3080000": "Повторная транзакция с такими же параметрами в блоке",
-    "2030000": "Нельзя в транзакции комбинировать операции требующие ключи разного уровня"
+    "2030000": "Нельзя в транзакции комбинировать операции требующие ключи разного уровня",
+    "1020400": "Неверное переданное значение",
+    "4020100": "Значение находится вне заданных пределов",
+    "3010000": "Ошибочная операция в транзакции",
 }
 
 function getDesc(msg) {
@@ -28,22 +31,17 @@ export class SignErrorsView extends Component {
     extractErrorMessage() {
         const error = this.props.error;
         console.log("error", error);
-        let message = null;
         let ret = [<h4 key="head">Ошибка отправки транзакции</h4>];
         if(error.message) {
             let arr = error.message.split("\n");
-            message = arr[0];
-            ret.push(<p key="error-text" className="mb-0">Сообщение об ошибке: {arr[0]}</p>);
-            if(arr.length > 1) {
-                ret.pop();
-                ret.push(<p key="error-text" className="mb-0">Сообщение об ошибке: {arr[1]}</p>);
-            }
-        }
-
-        if(message) {
-            const desc = getDesc(message);
-            if(desc) {
-                ret.push(<p key="error-desc" className="mb-0">Подсказка: {desc}</p>);
+            for(let i = 0; i < arr.length; i++) {
+                if(arr[i] && !arr[i].match(/for the full error payload/)) {
+                    ret.push(<p key="error-text" className="mb-0">{arr[i]}</p>);
+                    const desc = getDesc(arr[i]);
+                    if(desc) {
+                        ret.push(<small key="error-desc" className="mb-0">{desc}</small>);
+                    }                    
+                }
             }
         }
 
