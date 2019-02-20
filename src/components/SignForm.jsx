@@ -149,7 +149,7 @@ export class SignForm extends Component {
                         {...this.props}
                     />
                 }
-                <BottomToggler />
+                {(!this.state.sending && !this.state.result) &&  <BottomToggler /> }
             </div>
         )
     }
