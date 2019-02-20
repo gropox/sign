@@ -115,6 +115,8 @@ export class SignForm extends Component {
             <div className="clearfix border p-2 m-2">
                 {!nowif && <div className=" mb-3">
                 
+                {(!this.state.sending && !this.state.result) && 
+                <div>
                 <MediaQuery minWidth={425}>
                     <ul className="nav nav-tabs">
                         <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
@@ -127,7 +129,9 @@ export class SignForm extends Component {
                         <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
                     </ul>
                 </MediaQuery>
-                
+                </div>
+                }
+
                 </div>}
                 
                 {(this.state.error || this.state.result) && <SignErrorsView error={this.state.error} result={this.state.result} redirect={redirect} />}
@@ -136,13 +140,15 @@ export class SignForm extends Component {
                     </div>
                 }
 
-                <FormSelector 
-                    onChange={(key,value) => this.onChange(key, value)}
-                    onSign={() => this.onSign()}
-                    form_class={form_class}
-                    {...this.state}
-                    {...this.props}
-                />
+                {(!this.state.sending && !this.state.result) && 
+                    <FormSelector 
+                        onChange={(key,value) => this.onChange(key, value)}
+                        onSign={() => this.onSign()}
+                        form_class={form_class}
+                        {...this.state}
+                        {...this.props}
+                    />
+                }
                 <BottomToggler />
             </div>
         )
