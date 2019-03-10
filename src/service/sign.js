@@ -5,6 +5,32 @@ export const SIGN_TYPE = {
     WIF: "wif",
 }
 
+const WEBSOCKET = "websocket";
+const DEFAULT_WS = "wss://ws.golos.io";
+
+export const NODES = {
+    [DEFAULT_WS] : "golos.io",
+    "wss://api.golos.cf" : "vik"
+}
+
+export function getCurrentSelectedNode() {
+    return localStorage.getItem(WEBSOCKET) || DEFAULT_WS;
+}
+
+export function setCurrentSelectedNode(ws = DEFAULT_WS) {
+    golos.api.stop();
+    golos.config.set(WEBSOCKET, ws);
+
+    localStorage.setItem(WEBSOCKET, ws);
+}
+
+function setupNode() {
+    const ws = getCurrentSelectedNode();
+
+    golos.api.stop();
+    golos.config.set(WEBSOCKET, ws);
+}
+
 /**
  * Подпись и отправка транзакции. Имплементация взята из golos-js.broadcast.send и адаптирована под свои нужды.
  * @param {operation/Transaction} transaction 
@@ -14,6 +40,9 @@ export const SIGN_TYPE = {
  * @returns "Возвращает данные о созданной транзакции"
  */
 async function signandsend(transaction, sign_type, account, password) {
+
+    setupNode();
+
     const {raw_transaction, required_wif} = transaction;
 
     //Получаем ключ из аккаунта и пароля, если передан пароль

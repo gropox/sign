@@ -83,8 +83,8 @@ class App extends Component {
             <div className="container App">
                 {<div className="row">
                     <div className="col-sm-12">
-                        <nav className="navbar navbar-light " >
-                            <div>
+                        <nav className="navbar navbar-expand-lg navbar-light" >
+                            <div className="mr-auto">
                                 <h3>{this.state.title}</h3>
                                 {this.state.subtitle && <h5>{this.state.subtitle}</h5>}
                                 <br /><small>Подпись транзакции GOLOS
@@ -92,7 +92,7 @@ class App extends Component {
                             </div>
                         </nav>
                     </div>
-        </div>}
+            </div>}
                 <div className="row">
                     <div className="col-sm-12">
                         {content}

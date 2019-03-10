@@ -1,5 +1,22 @@
 import React from 'react'
 import {SIGN_TYPE} from "../service/sign";
+import {getCurrentSelectedNode, setCurrentSelectedNode, NODES} from "../service/sign";
+
+const NodeSelector = (props) => {
+
+    const current_ws = getCurrentSelectedNode();
+
+    return (
+        <div className="form-group  input-group-sm">
+            <label for="selectNode">Нода</label>
+            <select className="form-control" id="selectNode" onChange={(v => setCurrentSelectedNode(v.target.value))}>
+                {Object.keys(NODES).map(ws => (
+                    <option value={ws}  selected={ws === current_ws}>{NODES[ws]}</option>
+                ))}
+            </select>                  
+        </div>
+    );
+}
 
 function translate_role(role) {
     console.log("translate role", role);
@@ -49,6 +66,7 @@ export const FormWif = (props) => {
     const {transaction, form_class, wif_error} = props;
     return (
         <form id="sign-form" className={form_class}>
+            <NodeSelector />
             <div className="form-group input-group-sm">
                 <label htmlFor="wif">Приватный ключ</label>
 
@@ -67,6 +85,7 @@ export const FormAccountAndPasswort = (props) => {
     const account_class = (account_error?" is-invalid":"");
     return (
         <form id="sign-form" className={form_class}>
+            <NodeSelector />
             <div className="form-group input-group-sm">
                 <label htmlFor="account">Имя пользователя</label>
 
