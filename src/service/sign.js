@@ -10,6 +10,7 @@ const DEFAULT_WS = "wss://ws.golos.io";
 
 export const NODES = {
     [DEFAULT_WS] : "golos.io",
+    "wss://ws.golos.blog" : "golos.blog",
     "wss://api.golos.cf" : "vik"
 }
 
