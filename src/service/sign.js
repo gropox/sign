@@ -6,12 +6,12 @@ export const SIGN_TYPE = {
 }
 
 const WEBSOCKET = "websocket";
-const DEFAULT_WS = "wss://ws.golos.io";
+const DEFAULT_WS = "wss://golos.lexa.host/ws";
 
 export const NODES = {
-    [DEFAULT_WS] : "golos.io",
-    "wss://ws.golos.blog" : "golos.blog",
-    "wss://api.golos.cf" : "vik"
+    [DEFAULT_WS] : "Lex",
+    "wss://golos.solox.world/ws" : "Solox",
+    "wss://api.golos.blckchnd.com/ws" : "Blockchained"
 }
 
 export function getCurrentSelectedNode() {
