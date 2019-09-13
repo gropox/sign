@@ -25,7 +25,7 @@ export function setCurrentSelectedNode(ws = DEFAULT_WS) {
     localStorage.setItem(WEBSOCKET, ws);
 }
 
-function setupNode() {
+export function setupNode() {
     const ws = getCurrentSelectedNode();
 
     golos.api.stop();

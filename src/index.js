@@ -4,6 +4,11 @@ import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
+import {setupNode} from "./service/sign";
+
+//in library actually is wss://ws.golos.io, therefore setup previosly selected node, or default 
+setupNode();
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
