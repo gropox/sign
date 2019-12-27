@@ -4,7 +4,7 @@
 import Ajv from "ajv";
 import GolosSchema from "./opschemas";
 
-import operations from "golos-js/lib/broadcast/operations";
+import operations from "golos-classic-js/lib/broadcast/operations";
 
 const ROLES_PRIORITY = {
     "owner" : 0,

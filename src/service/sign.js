@@ -1,4 +1,4 @@
-const golos = require("golos-js");
+const golos = require("golos-classic-js");
 
 export const SIGN_TYPE = {
     PASSWORD: "password",
@@ -33,7 +33,7 @@ export function setupNode() {
 }
 
 /**
- * Подпись и отправка транзакции. Имплементация взята из golos-js.broadcast.send и адаптирована под свои нужды.
+ * Подпись и отправка транзакции. Имплементация взята из golos-classic-js.broadcast.send и адаптирована под свои нужды.
  * @param {operation/Transaction} transaction 
  * @param {SIGN_TYPE} sign_type 
  * @param {string} account 

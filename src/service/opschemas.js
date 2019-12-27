@@ -63,7 +63,11 @@ const known_operations = [
     "chain_properties_update",
     "break_free_referral",
     "delegate_vesting_shares_with_interest",
-    "reject_vesting_shares_delegation",    
+    "reject_vesting_shares_delegation",
+    "worker_request",
+    "worker_request_delete",
+    "worker_request_vote"
+
 ]
 
 
