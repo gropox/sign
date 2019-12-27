@@ -7,7 +7,7 @@
     "@braintree/sanitize-url": "github:braintree/sanitize-url",
     "ajv": "^6.5.5",
     "bootstrap": "^4.3.1",
-    "eslint-utils": "^2.0.0",
+    "eslint-utils": "^1.4.1",
     "gh-pages": "^2.0.1",
     "golos-classic-js": "^0.7.12",
     "handlebars": "^4.1.2",
