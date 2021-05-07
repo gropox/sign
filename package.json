@@ -10,7 +10,7 @@
     "eslint-utils": "^2.0.0",
     "gh-pages": "^2.0.1",
     "golos-classic-js": "^0.7.12",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.7.7",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "mixin-deep": "^2.0.1",
