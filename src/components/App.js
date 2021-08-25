@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css"
 import { Transaction } from "../service/operation";
 import ErrorsView from "./ErrorsView";
 
-import sanatizer from "@braintree/sanitize-url";
+import {sanitizeUrl} from "@braintree/sanitize-url"
 
 const ErrorMessage = (props) => {
     return (
@@ -35,7 +35,7 @@ class App extends Component {
         const subtitle = (params["subtitle"]);
         const nowif = Object.keys(params).includes("nowif");
         const user = params["user"];
-        let redirect = sanatizer.sanitizeUrl(params["redirect"] || "");
+        let redirect = sanitizeUrl(params["redirect"] || "");
 
         if(redirect === "about:blank") {
             redirect = null;
@@ -43,7 +43,7 @@ class App extends Component {
 
         let tr = params["tr"];
         if (!tr) {
-            console.log("Не найден URL параметр tr");
+            console.error("Не найден URL параметр tr");
             this.setState({ title, subtitle, error: "Вызов без параметров" });
             return;
         }
@@ -54,7 +54,7 @@ class App extends Component {
             try {
                 json = JSON.parse(tr);
             } catch (error) {
-                console.log("not valid json", tr);
+                console.error("not valid json", tr);
                 this.setState({ title, subtitle, error: "Переданная транзакция не является валидным JSON" });
                 return;
             }
@@ -63,7 +63,7 @@ class App extends Component {
             this.setState({ transaction, title, subtitle, user, nowif, redirect });
         } catch (errors) {
             //обнаружены ошибки
-            console.log("found errors", errors)
+            console.error("found errors", errors)
             this.setState({ errors });
         }
     }

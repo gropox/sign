@@ -37,7 +37,7 @@ export class Transaction {
      * Вернуть минимальную, требуемую роль
      */
     get required_wif() {
-        if(this.ops.length == 0) {
+        if(this.ops.length === 0) {
             return null;
         }
         const temp = [];

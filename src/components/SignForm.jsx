@@ -21,7 +21,7 @@ export class SignForm extends Component {
             account: props.user || "",
             error: null,
             result: null,
-            sign_type: SIGN_TYPE.PASSWORD,
+            sign_type: SIGN_TYPE.WIF,
             account_error : null,
             sending: false,
             redirect: null,
@@ -84,7 +84,6 @@ export class SignForm extends Component {
     }
 
     onChange(key, value) {
-        console.log("onChange", key, value)
         this.setState({[key]:value, wif_error:null, account_error:null});
     }
 
@@ -119,14 +118,14 @@ export class SignForm extends Component {
                 <div>
                 <MediaQuery minWidth={425}>
                     <ul className="nav nav-tabs">
-                        <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
-                        <TabButton label="Подпись ключом" sign_type={SIGN_TYPE.WIF} />
+                        <TabButton key={SIGN_TYPE.WIF} label="Подпись ключом" sign_type={SIGN_TYPE.WIF} />
+                        <TabButton key={SIGN_TYPE.PASSWORD} label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
                     </ul>
                 </MediaQuery>
                 <MediaQuery maxWidth={420}>
                     <ul className="nav nav-pills nav-justified">
-                        <TabButton label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
-                        <TabButton label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
+                        <TabButton key={SIGN_TYPE.WIF} label="Подпись ключем" sign_type={SIGN_TYPE.WIF} />
+                        <TabButton key={SIGN_TYPE.PASSWORD} label="Подпись паролем" sign_type={SIGN_TYPE.PASSWORD} />
                     </ul>
                 </MediaQuery>
                 </div>

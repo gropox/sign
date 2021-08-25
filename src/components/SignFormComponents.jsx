@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {SIGN_TYPE} from "../service/sign";
-import {getCurrentSelectedNode, setCurrentSelectedNode, NODES} from "../service/sign";
+import {getCurrentSelectedNode, setCurrentSelectedNode} from "../service/sign";
+import ApiNodes from '../service/api-nodes';
 
 const NodeSelector = (props) => {
 
@@ -8,18 +9,15 @@ const NodeSelector = (props) => {
 
     return (
         <div className="form-group  input-group-sm">
-            <label for="selectNode">Нода</label>
-            <select className="form-control" id="selectNode" onChange={(v => setCurrentSelectedNode(v.target.value))}>
-                {Object.keys(NODES).map(ws => (
-                    <option value={ws}  selected={ws === current_ws}>{NODES[ws]}</option>
-                ))}
+            <label htmlFor="selectNode">Нода</label>
+            <select className="form-control" id="selectNode" defaultValue={current_ws} onChange={(v => setCurrentSelectedNode(v.target.value))}>
+                <ApiNodes />
             </select>                  
         </div>
     );
 }
 
 function translate_role(role) {
-    console.log("translate role", role);
     switch(role) {
         case "owner": return "приватный ключ владельца"; 
         case "active": return "приватный, активный ключ"; 

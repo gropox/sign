@@ -6,12 +6,13 @@ export const SIGN_TYPE = {
 }
 
 const WEBSOCKET = "websocket";
-const DEFAULT_WS = "wss://golos.lexa.host/ws";
+const DEFAULT_WS = "wss://golos.lexai.host/ws";
 
 export const NODES = {
     [DEFAULT_WS] : "Lex",
-    "wss://golos.solox.world/ws" : "Solox",
-    "wss://api.golos.blckchnd.com/ws" : "Blockchained"
+    "wss://golos.viz.media/ws" : "Solox",
+    "wss://api-golos.blckchnd.com/ws" : "Blockchained",
+    "wss://api.aleksw.space/ws" : "alexw"
 }
 
 export function getCurrentSelectedNode() {
@@ -19,7 +20,10 @@ export function getCurrentSelectedNode() {
 }
 
 export function setCurrentSelectedNode(ws = DEFAULT_WS) {
-    golos.api.stop();
+    try {
+        golos.api.stop();
+    } catch(e) {
+    }
     golos.config.set(WEBSOCKET, ws);
 
     localStorage.setItem(WEBSOCKET, ws);
@@ -27,8 +31,11 @@ export function setCurrentSelectedNode(ws = DEFAULT_WS) {
 
 export function setupNode() {
     const ws = getCurrentSelectedNode();
+    try {
+        golos.api.stop();
+    } catch(e) {
+    }
 
-    golos.api.stop();
     golos.config.set(WEBSOCKET, ws);
 }
 

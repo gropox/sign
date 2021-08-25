@@ -30,7 +30,7 @@ export class SignErrorsView extends Component {
 
     extractErrorMessage() {
         const error = this.props.error;
-        console.log("error", error);
+        console.error("error", error);
         let ret = [<h4 key="head">Ошибка отправки транзакции</h4>];
         if(error.message) {
             let arr = error.message.split("\n");
@@ -49,7 +49,6 @@ export class SignErrorsView extends Component {
     }
 
     extractUsefulInfos() {
-        console.log("ret", this.props.result);
         return <div>
             <h4>Отправлено!</h4>
                 <p className="mb-0">Номер блока: {this.props.result.block_num}</p>
